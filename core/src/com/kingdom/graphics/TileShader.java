@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Matrix4;
 
-public class TestShader implements Shader {
+public class TileShader implements Shader {
     ShaderProgram program;
     Camera camera;
     RenderContext context;
@@ -32,8 +32,8 @@ public class TestShader implements Shader {
 
     @Override
     public void init () {
-        String vert = Gdx.files.internal("vert.glsl").readString();
-        String frag = Gdx.files.internal("frag.glsl").readString();
+        String vert = Gdx.files.internal("tilevert.glsl").readString();
+        String frag = Gdx.files.internal("tilefrag.glsl").readString();
         program = new ShaderProgram(vert, frag);
         if (!program.isCompiled())
             throw new GdxRuntimeException(program.getLog());

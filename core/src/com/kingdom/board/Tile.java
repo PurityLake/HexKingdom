@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.math.Matrix4;
 
 import com.badlogic.gdx.math.Vector3;
-import com.kingdom.graphics.TestShader;
+import com.kingdom.graphics.TileShader;
 
 public class Tile {
     private int x, y;
@@ -17,7 +17,7 @@ public class Tile {
     private static Model model;
     private static ModelInstance instance;
     private Matrix4 world;
-    private TestShader shader;
+    private TileShader shader;
 
     public Tile(int x, int y) {
         if (first) {
@@ -27,7 +27,7 @@ public class Tile {
             instance = new ModelInstance(model);
         }
         world = new Matrix4();
-        shader = new TestShader();
+        shader = new TileShader();
         this.x = x;
         this.y = y;
         if (y % 2 == 0) {
@@ -47,7 +47,7 @@ public class Tile {
     public ModelInstance getInstance() {
         return instance;
     }
-    public TestShader getShader() {
+    public TileShader getShader() {
         return shader;
     }
 }
