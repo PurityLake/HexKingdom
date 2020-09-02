@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.math.Matrix4;
-
 import com.badlogic.gdx.math.Vector3;
+
 import com.kingdom.graphics.TileShader;
 
 public class Tile {
@@ -18,6 +18,22 @@ public class Tile {
     private static ModelInstance instance;
     private Matrix4 world;
     private TileShader shader;
+
+    public Matrix4 getWorld() {
+        return world;
+    }
+
+    public void setWorld(Matrix4 w) {
+        world.set(w);
+    }
+
+    public Vector3 getColor() {
+        return shader.getColor();
+    }
+
+    public void setColor(Vector3 w) {
+        shader.getColor().set(w);
+    }
 
     public Tile(int x, int y) {
         if (first) {

@@ -12,40 +12,28 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Matrix4;
 
-public class TileShader implements Shader {
+public class SingleColorShader implements Shader {
     ShaderProgram program;
     Camera camera;
     RenderContext context;
     int u_projTrans;
     int u_worldTrans;
-    int u_color;
     Matrix4 world;
-    Vector3 color;
 
     public void setWorld(Matrix4 world) {
         this.world = world;
     }
 
-    public void setColor(Vector3 color) {
-        this.color.set(color);
-    }
-
-    public Vector3 getColor() {
-        return color;
-    }
-
     @Override
-    public void init () {
-        String vert = Gdx.files.internal("tilevert.glsl").readString();
-        String frag = Gdx.files.internal("tilefrag.glsl").readString();
+    public void init() {
+        String vert = Gdx.files.internal("singlecolorvert.glsl").readString();
+        String frag = Gdx.files.internal("singlecolorfrag.glsl").readString();
         program = new ShaderProgram(vert, frag);
         if (!program.isCompiled())
             throw new GdxRuntimeException(program.getLog());
         u_projTrans = program.getUniformLocation("u_projTrans");
         u_worldTrans = program.getUniformLocation("u_worldTrans");
-        u_color = program.getUniformLocation("u_color");
         world = new Matrix4();
-        color = new Vector3();
     }
 
     @Override
@@ -66,7 +54,6 @@ public class TileShader implements Shader {
     @Override
     public void render(Renderable renderable) {
         program.setUniformMatrix(u_worldTrans, world);
-        program.setUniformf(u_color, color.x, color.y, color.z);
         renderable.meshPart.render(program);
     }
 
